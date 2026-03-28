@@ -1,4 +1,4 @@
-# LeatherLens   Real vs Fake Leather Classifier
+# LeatherVision ->  Real vs Fake Leather Classifier
 
 A Computer Vision command-line tool that classifies whether a given leather image is **Real or Fake** using texture-based analysis and Machine Learning (SVM).
 Built as part of the **Bring Your Own Project (BYOP)** component for the flipped course at VIT Bhopal University.
