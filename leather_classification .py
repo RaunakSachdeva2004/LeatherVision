@@ -9,9 +9,8 @@ from sklearn.metrics import accuracy_score, classification_report
 
 MODEL_PATH = "leather_model.pkl"
 
-# -----------------------------
+
 # LBP Feature Extraction
-# -----------------------------
 def extract_lbp(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     radius = 1
@@ -24,8 +23,8 @@ def extract_lbp(image):
             binary_string = ''
 
             for dx, dy in [(-1,-1), (-1,0), (-1,1),
-                           (0,1), (1,1), (1,0),
-                           (1,-1), (0,-1)]:
+                (0,1), (1,1), (1,0),
+                (1,-1), (0,-1)]:
                 binary_string += '1' if gray[i+dx, j+dy] > center else '0'
 
             lbp[i, j] = int(binary_string, 2)
@@ -36,9 +35,8 @@ def extract_lbp(image):
 
     return hist
 
-# -----------------------------
+
 # Load Dataset
-# -----------------------------
 def load_data(dataset_path):
     data, labels = [], []
 
@@ -60,9 +58,8 @@ def load_data(dataset_path):
 
     return np.array(data), np.array(labels)
 
-# -----------------------------
+
 # Train Model
-# -----------------------------
 def train(dataset_path):
     print("[INFO] Loading dataset...")
     X, y = load_data(dataset_path)
@@ -84,9 +81,8 @@ def train(dataset_path):
     joblib.dump(model, MODEL_PATH)
     print(f"[INFO] Model saved to {MODEL_PATH}")
 
-# -----------------------------
+
 # Predict
-# -----------------------------
 def predict(image_path):
     if not os.path.exists(MODEL_PATH):
         print("[ERROR] Train model first!")
@@ -111,9 +107,8 @@ def predict(image_path):
     print(f"Prediction : {label}")
     print(f"Confidence : {max(confidence):.2f}")
 
-# -----------------------------
+
 # CLI Setup
-# -----------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Leather Classifier CLI")
 
